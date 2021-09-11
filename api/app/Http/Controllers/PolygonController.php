@@ -88,7 +88,10 @@ class PolygonController extends Controller
         $key = env('POLYGON_KEY');
         $url = "https://api.polygon.io";
 
-        $params = "/v1/open-close/crypto/BTC/USD/2020-10-14?adjusted=true&apiKey=";
-        return Http::get($url . $params . $key);
+        $params = "/v1/open-close/crypto/BTC/USD/2017-10-14?adjusted=true&apiKey=";
+        $get = Http::get($url . $params . $key);
+        $decode = json_decode($get);
+        return "Date: " . $decode->day ."<br>Close: " . $decode->close;
+
     }
 }
